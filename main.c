@@ -17,7 +17,7 @@ void loadBoard(short board[3]){
         printf("\n");
        
 
-
+//hello
     }
 
 }
