@@ -1,8 +1,9 @@
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 bool IsXTurn;
-
+bool IsNotComplete = true;
 void loadBoard(short board[]){
 
 
@@ -26,7 +27,26 @@ void loadBoard(short board[]){
 
 
 }
+void checkForGameOver(short top[], short middle[], short bottom[]){
 
+int checker = 0;
+for (int i = 0; i < 3; i++)
+{
+
+if(top[i] != 0 && bottom[i] != 0 && middle[i] != 0){
+checker++;
+}
+
+
+
+
+}
+if(checker >= 3 ){
+    IsNotComplete = false;
+}
+
+return;
+}
 void intiate(short top[], short middle[],short bottom[]){
 
  for(int i = 0; i < 3; i++){
@@ -76,28 +96,37 @@ return;
 }
 
 int main(void){
-
+  
     short top[3];
     short middle[3];
     short bottom[3];
     IsXTurn = true;
    intiate(top, middle, bottom);
 
-
-while(1){
+while(IsNotComplete){
 int input = 0;
 printf("\nEnter a position!\nTop left is 1, bottom right is 9\n");
 scanf("%d", &input);
-printf("The number is %d\n", input);
+
+
+
 if(input > 9 || input < 1){
+
+    input = 0;
     continue;
 }
+system("cls");
 setSpot(input, top, middle, bottom);
 
 loadBoard(top);
 loadBoard(middle);
 loadBoard(bottom);
+checkForGameOver(top, middle, bottom);
 
 }
- //   
+if(!IsNotComplete){
+printf("\nThank you for playing!");
+
+}
+  exit(0);
 }
