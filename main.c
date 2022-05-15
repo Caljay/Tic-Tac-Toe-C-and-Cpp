@@ -1,9 +1,12 @@
-#include <stdbool.h>
 #include <stdio.h>
-#include <stdlib.h>
+
+#define bool  _Bool
+#define false 0
+#define true  1
 
 bool IsXTurn;
 bool IsNotComplete = true;
+
 void loadBoard(short board[]){
 
 
@@ -115,7 +118,7 @@ if(input > 9 || input < 1){
     input = 0;
     continue;
 }
-system("cls");
+printf("\e[1;1H\e[2J");
 setSpot(input, top, middle, bottom);
 
 loadBoard(top);
@@ -128,5 +131,5 @@ if(!IsNotComplete){
 printf("\nThank you for playing!");
 
 }
-  exit(0);
+return 0;
 }
